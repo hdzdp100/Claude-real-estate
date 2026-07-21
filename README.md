@@ -65,6 +65,28 @@ this way on a public/shared Wi-Fi or expose it to the internet. For
 always-on access from anywhere (not just your home network), deploy it to a
 proper host instead rather than opening this dev server to the internet.
 
+## Deploying so it works from your phone anywhere (no computer needed)
+
+This repo includes a `Procfile` and `gunicorn` so it can run on a free host
+like [Render](https://render.com). Steps (all doable from a phone browser):
+
+1. Go to render.com and sign in with GitHub (free, no credit card needed).
+2. Tap **New > Web Service**, connect your GitHub account if prompted, and
+   pick this repo (`hdzdp100/Claude-real-estate`) and this branch
+   (`claude/house-price-lookup-nb-u5lhma`).
+3. Render should auto-detect Python. Confirm:
+   - Build command: `pip install -r requirements.txt`
+   - Start command: `gunicorn app:app`
+4. Choose the **Free** instance type and tap **Create Web Service**.
+5. Wait a minute or two for it to build and deploy — Render gives you a
+   URL like `https://your-app-name.onrender.com`. Open that on your phone.
+
+Notes:
+- The free tier spins down after inactivity, so the first request after a
+  while takes ~30-50 seconds to wake back up — normal, not broken.
+- No environment variables are required to run; `SOCRATA_APP_TOKEN` is
+  optional (see Troubleshooting) if you hit rate limits.
+
 ## Usage
 
 - Enter an address like `123 Main St, Fredericton, NB` (include the town —
