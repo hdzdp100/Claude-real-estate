@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NB House Comps</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>NB House Comps</h1>
+    <p class="subtitle">Find nearby comparable property assessed values in New Brunswick</p>
+  </header>
+
+  <main>
+    <form id="search-form">
+      <input
+        id="address"
+        type="text"
+        placeholder="e.g. 123 Main St, Fredericton, NB"
+        autocomplete="off"
+        required
+      />
+      <label class="radius-label">
+        Radius (km)
+        <input id="radius" type="number" min="0.1" max="10" step="0.1" value="1" />
+      </label>
+      <button type="submit">Search</button>
+    </form>
+
+    <div class="disclaimer">
+      Uses the Government of New Brunswick's open <strong>property assessment</strong> data
+      (used for property tax), not private MLS sale prices — NB does not publish actual
+      sold prices as open data. Assessed value is shown here as a public proxy for nearby
+      home values.
+    </div>
+
+    <div id="status"></div>
+
+    <div id="results" hidden>
+      <section id="subject-card"></section>
+
+      <div id="map"></div>
+
+      <section id="stats-card"></section>
+
+      <section>
+        <h2>Nearby properties</h2>
+        <table id="comps-table">
+          <thead>
+            <tr>
+              <th>Address</th>
+              <th>Property class</th>
+              <th>Distance</th>
+              <th>Assessed value</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
