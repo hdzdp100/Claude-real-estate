@@ -42,6 +42,29 @@ python app.py
 
 Then open http://127.0.0.1:5000 in your browser.
 
+## Opening it from your phone
+
+The server listens on `0.0.0.0`, so any device on the same Wi-Fi network as
+the computer running it can reach it too:
+
+1. Find your computer's local IP address:
+   - macOS: `ipconfig getifaddr en0` (or `en1` if on Wi-Fi via a different
+     interface)
+   - Linux: `hostname -I`
+   - Windows: `ipconfig` and look for "IPv4 Address"
+2. On your phone (connected to the **same Wi-Fi**), open
+   `http://<that-ip>:5000` in a browser, e.g. `http://192.168.1.42:5000`.
+3. If it doesn't load, your computer's firewall may be blocking incoming
+   connections on port 5000 — allow it, or temporarily disable the firewall
+   to test.
+
+**Security note:** this runs Flask's debug server, which is convenient for
+development but its interactive debugger allows arbitrary code execution if
+someone else can reach it — fine on a trusted home network, but don't run it
+this way on a public/shared Wi-Fi or expose it to the internet. For
+always-on access from anywhere (not just your home network), deploy it to a
+proper host instead rather than opening this dev server to the internet.
+
 ## Usage
 
 - Enter an address like `123 Main St, Fredericton, NB` (include the town —

@@ -305,4 +305,6 @@ def api_search():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    # host="0.0.0.0" makes this reachable from other devices on the same
+    # network (e.g. your phone), not just this machine.
+    app.run(debug=True, port=5000, host="0.0.0.0")
